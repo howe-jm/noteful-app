@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NoteListNav from '../NoteListNav/NoteListNav';
 import NotePageNav from '../NotePageNav/NotePageNav';
@@ -7,6 +7,7 @@ import NoteListMain from '../NoteListMain/NoteListMain';
 import NotePageMain from '../NotePageMain/NotePageMain';
 import AddFolder from '../AddFolder/AddFolder';
 import AddNote from '../AddNote/AddNote';
+import PageNotFound from '../PageNotFound/PageNotFound';
 import ApiContext from '../ApiContext';
 import config from '../config';
 import './App.css';
@@ -51,12 +52,15 @@ class App extends Component {
   renderNavRoutes() {
     return (
       <>
-        {['/', '/folder/:folderId'].map((path) => (
-          <Route exact key={path} path={path} component={NoteListNav} />
-        ))}
-        <Route path='/note/:noteId' component={NotePageNav} />
-        <Route path='/add-folder' component={NotePageNav} />
-        <Route path='/add-note' component={NotePageNav} />
+        <Switch>
+          {['/', '/folder/:folderId'].map((path) => (
+            <Route exact key={path} path={path} component={NoteListNav} />
+          ))}
+          <Route path='/note/:noteId' component={NotePageNav} />
+          <Route path='/add-folder' component={NotePageNav} />
+          <Route path='/add-note' component={NotePageNav} />
+          <Route component={NotePageNav} />
+        </Switch>
       </>
     );
   }
@@ -64,12 +68,15 @@ class App extends Component {
   renderMainRoutes() {
     return (
       <>
-        {['/', '/folder/:folderId'].map((path) => (
-          <Route exact key={path} path={path} component={NoteListMain} />
-        ))}
-        <Route path='/note/:noteId' component={NotePageMain} />
-        <Route path='/add-folder' component={AddFolder} />
-        <Route path='/add-note' component={AddNote} />
+        <Switch>
+          {['/', '/folder/:folderId'].map((path) => (
+            <Route exact key={path} path={path} component={NoteListMain} />
+          ))}
+          <Route path='/note/:noteId' component={NotePageMain} />
+          <Route path='/add-folder' component={AddFolder} />
+          <Route path='/add-note' component={AddNote} />
+          <Route component={PageNotFound} />
+        </Switch>
       </>
     );
   }
