@@ -12,6 +12,10 @@ import './NoteListMain.css';
 export default class NoteListMain extends React.Component {
   static contextType = ApiContext;
 
+  handleDeleteNote = () => {
+    this.props.history.push(`/`);
+  };
+
   render() {
     const { folderId } = this.props.match.params;
     const { notes = [] } = this.context;
@@ -22,7 +26,7 @@ export default class NoteListMain extends React.Component {
           <ul>
             {notesForFolder.map((note) => (
               <li key={note.id}>
-                <Note id={note.id} name={note.name} modified={note.modified} />
+                <Note id={note.id} name={note.name} modified={note.modified} onDeleteNote={this.handleDeleteNote} />
               </li>
             ))}
           </ul>
