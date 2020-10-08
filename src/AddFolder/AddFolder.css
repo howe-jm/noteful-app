@@ -1,0 +1,16 @@
+.add-folder-form {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+  color: #cacaca;
+  padding-bottom: 30px;
+  width: 400px;
+  background-color: #010d1e;
+  text-align: center;
+  margin: 10px 0 0 10px;
+}
+
+.error-text {
+  font-size: 1.5rem;
+  color: red;
+}
