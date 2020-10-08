@@ -78,7 +78,7 @@ export default class AddNote extends React.Component {
               <label>
                 Note Name
                 <div>
-                  <input className='note-submit-inputs' value={this.state.name} type='text' name='notename' onChange={(event) => this.setState({ name: event.target.value })} />
+                  <input className='note-submit-inputs' value={this.state.name} type='text' name='notename' onChange={(event) => this.setState({ error: false, name: event.target.value })} />
                 </div>
               </label>
             </div>
@@ -86,7 +86,7 @@ export default class AddNote extends React.Component {
               <label>
                 Folder
                 <div>
-                  <select value={this.state.folderId} name='notefolder' onChange={(event) => this.setState({ folderId: event.target.value })}>
+                  <select value={this.state.folderId} name='notefolder' onChange={(event) => this.setState({ error: false, folderId: event.target.value })}>
                     {options}
                   </select>
                 </div>
@@ -96,7 +96,7 @@ export default class AddNote extends React.Component {
               <label>
                 Note Content
                 <div>
-                  <textarea className='note-submit-content' value={this.state.content} onChange={(event) => this.setState({ content: event.target.value })} />
+                  <textarea className='note-submit-content' value={this.state.content} onChange={(event) => this.setState({ error: false, content: event.target.value })} />
                 </div>
               </label>
             </div>

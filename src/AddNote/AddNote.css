@@ -26,8 +26,11 @@
 }
 
 .error-text {
-  font-size: 1.5rem;
-  color: red;
+  font-size: 0.8rem;
+  color: black;
+  background: lightcoral;
+  border-radius: 20px;
+  padding: 5px 5px 8px 5px;
 }
 
 .form-div {

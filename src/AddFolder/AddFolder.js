@@ -55,7 +55,7 @@ export default class AddFolder extends React.Component {
             <label>
               Folder Name
               <div>
-                <input type='text' name='name' onChange={(event) => this.setState({ value: event.target.value })} />
+                <input type='text' name='name' onChange={(event) => this.setState({ error: false, value: event.target.value })} />
               </div>
             </label>
             <div>
