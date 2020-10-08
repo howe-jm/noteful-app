@@ -2,8 +2,10 @@ import React from 'react';
 import './AddFolder.css';
 import ApiContext from '../ApiContext';
 import cuid from 'cuid';
+import ErrorPage from '../ErrorBoundary/ErrorBoundary';
+import PropTypes from 'prop-types';
 
-export default class AppFolder extends React.Component {
+export default class AddFolder extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: '', error: false };
@@ -46,21 +48,27 @@ export default class AppFolder extends React.Component {
 
   render() {
     return (
-      <div className='add-folder-form'>
-        <h2 className='add-form-title'>Add Folder</h2>
-        <form onSubmit={!this.state.value || this.state.value === '' ? this.formErrorState : this.handleSubmit}>
-          <label>
-            Folder Name
+      <ErrorPage>
+        <div className='add-folder-form'>
+          <h2 className='add-form-title'>Add Folder</h2>
+          <form onSubmit={!this.state.value || this.state.value === '' ? this.formErrorState : this.handleSubmit}>
+            <label>
+              Folder Name
+              <div>
+                <input type='text' name='name' onChange={(event) => this.setState({ value: event.target.value })} />
+              </div>
+            </label>
             <div>
-              <input type='text' name='name' onChange={(event) => this.setState({ value: event.target.value })} />
+              <input type='submit' value='Submit' />
             </div>
-          </label>
-          <div>
-            <input type='submit' value='Submit' />
-          </div>
-          {this.state.error && <p className='error-text'>Folder must have a name!</p>}
-        </form>
-      </div>
+            {this.state.error && <p className='error-text'>Folder must have a name!</p>}
+          </form>
+        </div>
+      </ErrorPage>
     );
   }
 }
+
+AddFolder.defaultProps = {
+  history: PropTypes.object,
+};

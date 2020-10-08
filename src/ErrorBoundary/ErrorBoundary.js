@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class ErrorPage extends React.Component {
   state = { error: null };
@@ -18,3 +19,7 @@ export default class ErrorPage extends React.Component {
     return this.props.children;
   }
 }
+
+ErrorPage.defaultProps = {
+  children: PropTypes.obj,
+};
