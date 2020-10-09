@@ -10,7 +10,8 @@ export default class AddNote extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '', // Had to define a default folderId value, which is fine since folders can't (yet) be deleted.
+      name: '',
+      // Had to define a default folderId value, which is fine since folders can't (yet) be deleted.
       // Otherwise, new notes couldn't read initial folder value and would POST without it.
       folderId: 'b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1',
       content: '',
@@ -63,7 +64,8 @@ export default class AddNote extends React.Component {
     const requestOptions = { method: 'POST', headers: myHeaders, body: urlencoded, redirect: 'follow' };
 
     fetch('http://localhost:9090/notes/', requestOptions)
-      // Then statements based on previous code. If the API query responds inappropriately, catch  the error and set the apiError state and apiErrMsg state appropriately.
+      // Then statements based on previous code. If the API query responds inappropriately, catch
+      // the error and set the apiError state and apiErrMsg state appropriately.
       .then((res) => {
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
         return res.json();
@@ -72,7 +74,7 @@ export default class AddNote extends React.Component {
       .then((res) => {
         this.context.addNote(res);
       })
-      // Upon submission of a folder, the page doesn't need to stay on the folder submit form, so root view is pushed to the end of props.history, sending the user to main page.
+      // Upon submission of a note, the page doesn't need to stay on the note submit form, so root view is pushed to the end of props.history, sending the user to main page.
       .then(() => this.props.history.push(`/`))
       // Error handling, so the rendered jsx displays appropriate feedback on any errors.
       .catch((error) => this.setState({ submitting: false, apiError: true, apiErrMsg: `${error}` }));
@@ -106,7 +108,17 @@ export default class AddNote extends React.Component {
         <div className='add-note-form'>
           <h2 className='add-form-title'>Add Note</h2>
           {/* Basic form validation. We only want to make sure the form isn't empty in this case. If empty, we set the error state. */}
-          <form className='form-body' onSubmit={!name || name === '' || (!content || content === '') ? () => this.setState({ error: true }) : this.handleSubmit}>
+          <form
+            className='form-body'
+            onSubmit={
+              !name || name === '' || (!content || content === '')
+                ? (e) => {
+                    e.preventDefault();
+                    this.setState({ error: true });
+                  }
+                : this.handleSubmit
+            }
+          >
             <div className='form-div'>
               <label>
                 Note Name

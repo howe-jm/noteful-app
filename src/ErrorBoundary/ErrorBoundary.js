@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './ErrorBoundary.css';
-
-// It's an error boundary! It isn't very complicated. I think it works. I haven't figured out how intentionall trigger errors in the production build yet.
 export default class ErrorPage extends React.Component {
   state = { error: null };
   static getDerivedStateFromError(error) {
