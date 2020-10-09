@@ -8,7 +8,15 @@ import PropTypes from 'prop-types';
 export default class AddNote extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: '', folderId: 'b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1', content: '', error: false };
+    this.state = {
+      name: '',
+      folderId: 'b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1',
+      content: '',
+      error: false,
+      submitting: false,
+      apiError: false,
+      apiErrMsg: '',
+    };
   }
 
   static contextType = ApiContext;
@@ -20,6 +28,7 @@ export default class AddNote extends React.Component {
   };
 
   postFormToApi = (obj) => {
+    this.setState({ submitting: true });
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 
@@ -40,7 +49,8 @@ export default class AddNote extends React.Component {
       .then((res) => {
         this.context.addNote(res);
       })
-      .then(() => this.props.history.push(`/`));
+      .then(() => this.props.history.push(`/`))
+      .catch((error) => this.setState({ submitting: false, apiError: true, apiErrMsg: `${error}` }));
   };
 
   formErrorState = (event) => {
@@ -59,6 +69,7 @@ export default class AddNote extends React.Component {
   };
 
   render() {
+    const { submitting, apiError, apiErrMsg } = this.state;
     if (!this.context.folders) {
       return (
         <ErrorPage>
@@ -110,6 +121,7 @@ export default class AddNote extends React.Component {
               <div className='note-submit-button'>
                 <input type='submit' value='Submit' />
               </div>
+              {submitting ? <h2 className='loading-text'>Submitting...</h2> : apiError ? <h2 className='error-text'>Error: {apiErrMsg}</h2> : undefined}
               {this.state.error && <p className='error-text'>{this.validateForm()}</p>}
             </form>
           </div>

@@ -17,9 +17,14 @@ class App extends Component {
   state = {
     notes: [],
     folders: [],
+    loading: false,
+    timeout: false,
+    error: false,
+    errorMsg: '',
   };
 
   componentDidMount() {
+    this.setState({ loading: true });
     Promise.all([fetch(`${config.API_ENDPOINT}/notes`), fetch(`${config.API_ENDPOINT}/folders`)])
       .then(([notesRes, foldersRes]) => {
         if (!notesRes.ok) return notesRes.json().then((e) => Promise.reject(e));
@@ -29,9 +34,10 @@ class App extends Component {
       })
       .then(([notes, folders]) => {
         this.setState({ notes, folders });
+        this.setState({ loading: false });
       })
       .catch((error) => {
-        console.error({ error });
+        this.setState({ loading: false, error: true, errorMsg: `${error}` });
       });
   }
 
@@ -89,17 +95,18 @@ class App extends Component {
       addFolder: this.handleAddFolder,
       addNote: this.handleAddNote,
     };
+    const { loading, error, errorMsg } = this.state;
     return (
       <ErrorPage>
         <ApiContext.Provider value={value}>
           <div className='App'>
-            <nav className='App__nav'>{this.renderNavRoutes()}</nav>
+            <nav className='App__nav'>{loading ? <h2 className='loading-text'>Loading...</h2> : error ? <h2 className='loading-text'>Error: {errorMsg}</h2> : this.renderNavRoutes()}</nav>
             <header className='App__header'>
               <h1>
                 <Link to='/'>Noteful</Link> <FontAwesomeIcon icon='check-double' />
               </h1>
             </header>
-            <main className='App__main'>{this.renderMainRoutes()}</main>
+            <main className='App__main'>{loading ? <h2 className='loading-text'>Loading...</h2> : error ? <h2 className='loading-text'>Error: {errorMsg}</h2> : this.renderMainRoutes()}</main>
           </div>
         </ApiContext.Provider>
       </ErrorPage>

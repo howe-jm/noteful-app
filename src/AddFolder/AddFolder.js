@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 export default class AddFolder extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '', error: false };
+    this.state = { value: '', error: false, submitting: false, apiError: false, apiErrMsg: '' };
   }
 
   static contextType = ApiContext;
@@ -18,6 +18,7 @@ export default class AddFolder extends React.Component {
     this.postFormToApi(this.state.value);
   };
   postFormToApi = (name) => {
+    this.setState({ submitting: true });
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 
@@ -36,9 +37,7 @@ export default class AddFolder extends React.Component {
         this.context.addFolder(res);
       })
       .then(() => this.props.history.push(`/`))
-      .catch((error) => {
-        console.error({ error });
-      });
+      .catch((error) => this.setState({ submitting: false, apiError: true, apiErrMsg: `${error}` }));
   };
 
   formErrorState = (event) => {
@@ -47,6 +46,7 @@ export default class AddFolder extends React.Component {
   };
 
   render() {
+    const { submitting, apiError, apiErrMsg } = this.state;
     return (
       <ErrorPage>
         <div className='add-folder-form'>
@@ -61,6 +61,7 @@ export default class AddFolder extends React.Component {
             <div>
               <input type='submit' value='Submit' />
             </div>
+            {submitting ? <h2 className='loading-text'>Submitting...</h2> : apiError ? <h2 className='error-text'>Error: {apiErrMsg}</h2> : null}
             {this.state.error && <p className='error-text'>Folder must have a name!</p>}
           </form>
         </div>
