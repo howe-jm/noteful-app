@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add Note component renders an error page with no folders present 1`] = `
+<ErrorPage>
+  <div
+    className="add-note-form"
+  >
+    <h2
+      className="add-form-title"
+    >
+      Add Note
+    </h2>
+    <form
+      className="form-body"
+    >
+      <div
+        className="form-div"
+      >
+        <label>
+          Note Name
+          <div>
+            <input
+              className="note-submit-inputs"
+              name="notename"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </div>
+        </label>
+      </div>
+      <div
+        className="form-div"
+      >
+        <label>
+          Folder
+          <div>
+            <select
+              name="notefolder"
+              onChange={[Function]}
+              value="b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
+            />
+          </div>
+        </label>
+      </div>
+      <div
+        className="form-div"
+      >
+        <label>
+          Note Content
+          <div>
+            <textarea
+              className="note-submit-content"
+              onChange={[Function]}
+              value=""
+            />
+          </div>
+        </label>
+      </div>
+      <div
+        className="note-submit-button"
+      >
+        <input
+          type="submit"
+          value="Submit"
+        />
+      </div>
+    </form>
+  </div>
+</ErrorPage>
+`;
+
+exports[`Add Note component renders the add note form given props 1`] = `
+<ErrorPage>
+  <div
+    className="add-note-form"
+  >
+    <h2
+      className="add-form-title"
+    >
+      Add Note
+    </h2>
+    <form
+      className="form-body"
+    >
+      <div
+        className="form-div"
+      >
+        <label>
+          Note Name
+          <div>
+            <input
+              className="note-submit-inputs"
+              name="notename"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </div>
+        </label>
+      </div>
+      <div
+        className="form-div"
+      >
+        <label>
+          Folder
+          <div>
+            <select
+              name="notefolder"
+              onChange={[Function]}
+              value="b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
+            />
+          </div>
+        </label>
+      </div>
+      <div
+        className="form-div"
+      >
+        <label>
+          Note Content
+          <div>
+            <textarea
+              className="note-submit-content"
+              onChange={[Function]}
+              value=""
+            />
+          </div>
+        </label>
+      </div>
+      <div
+        className="note-submit-button"
+      >
+        <input
+          type="submit"
+          value="Submit"
+        />
+      </div>
+    </form>
+  </div>
+</ErrorPage>
+`;

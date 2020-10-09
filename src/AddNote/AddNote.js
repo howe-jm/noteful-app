@@ -91,13 +91,15 @@ export default class AddNote extends React.Component {
 
   render() {
     const { error, submitting, apiError, apiErrMsg, name, content, folderId } = this.state;
-    const options = this.context.folders.map((folder) => {
-      return (
-        <option key={folder.id} value={folder.id}>
-          {folder.name}
-        </option>
-      );
-    });
+    if (this.context.folders) {
+      var options = this.context.folders.map((folder) => {
+        return (
+          <option key={folder.id} value={folder.id}>
+            {folder.name}
+          </option>
+        );
+      });
+    }
 
     return (
       <ErrorPage>
