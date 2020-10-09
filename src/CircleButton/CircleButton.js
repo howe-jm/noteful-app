@@ -14,7 +14,3 @@ export default function NavCircleButton(props) {
     props.children
   );
 }
-
-NavCircleButton.propTypes = {
-  tag: PropTypes.string,
-};
