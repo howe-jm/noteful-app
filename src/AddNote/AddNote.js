@@ -155,5 +155,14 @@ AddNote.propTypes = {
   history: PropTypes.object,
   context: PropTypes.shape({
     match: PropTypes.object,
+    folders: PropTypes.object,
   }),
+};
+
+AddNote.defaultProps = {
+  history: {},
+  context: {
+    match: {},
+    folders: {},
+  },
 };
