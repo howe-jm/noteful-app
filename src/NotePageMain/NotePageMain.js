@@ -42,3 +42,9 @@ NotePageMain.propTypes = {
     params: PropTypes.object,
   }),
 };
+
+NotePageMain.defaultProps = {
+  match: {
+    params: {},
+  },
+};

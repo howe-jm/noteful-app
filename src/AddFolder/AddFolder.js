@@ -84,3 +84,9 @@ export default class AddFolder extends React.Component {
 AddFolder.propTypes = {
   history: PropTypes.object,
 };
+
+AddFolder.defaultProps = {
+  context: {
+    folders: {},
+  },
+};

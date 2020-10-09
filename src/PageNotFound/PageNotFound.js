@@ -18,7 +18,3 @@ export default class PageNotFound extends React.Component {
     );
   }
 }
-
-PageNotFound.propTypes = {
-  context: PropTypes.object,
-};
