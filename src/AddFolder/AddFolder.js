@@ -59,7 +59,7 @@ export default class AddFolder extends React.Component {
         <div className='add-folder-form'>
           <h2 className='add-form-title'>Add Folder</h2>
           {/* Check that the name field isn't undefined (not likely) or an empty string (likely). If so, set error state. Otherwise, submit the folder. */}
-          <form onSubmit={!value || value === '' ? this.setState({ error: true }) : this.handleSubmit}>
+          <form onSubmit={!value || value === '' ? () => this.setState({ error: true }) : this.handleSubmit}>
             <label>
               Folder Name
               <div>

@@ -12,6 +12,7 @@ exports[`Add Note component renders an error page with no folders present 1`] = 
     </h2>
     <form
       className="form-body"
+      onSubmit={[Function]}
     >
       <div
         className="form-div"
@@ -82,6 +83,7 @@ exports[`Add Note component renders the add note form given props 1`] = `
     </h2>
     <form
       className="form-body"
+      onSubmit={[Function]}
     >
       <div
         className="form-div"

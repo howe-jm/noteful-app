@@ -106,7 +106,7 @@ export default class AddNote extends React.Component {
         <div className='add-note-form'>
           <h2 className='add-form-title'>Add Note</h2>
           {/* Basic form validation. We only want to make sure the form isn't empty in this case. If empty, we set the error state. */}
-          <form className='form-body' onSubmit={!name || name === '' || (!content || content === '') ? this.setState({ error: true }) : this.handleSubmit}>
+          <form className='form-body' onSubmit={!name || name === '' || (!content || content === '') ? () => this.setState({ error: true }) : this.handleSubmit}>
             <div className='form-div'>
               <label>
                 Note Name
