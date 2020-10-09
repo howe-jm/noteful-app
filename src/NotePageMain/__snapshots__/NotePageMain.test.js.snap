@@ -6,9 +6,6 @@ exports[`NotePageMain component renders a .NotePageMain by default 1`] = `
     className="NotePageMain"
   >
     <Note
-      id={[Function]}
-      modified={[Function]}
-      name={[Function]}
       onDeleteNote={[Function]}
     />
     <div
@@ -21,15 +18,3 @@ exports[`NotePageMain component renders a .NotePageMain by default 1`] = `
   </section>
 </ErrorPage>
 `;
-
-exports[`NotePageMain component renders a Note with note prop 1`] = `
-<Note
-  id="cbc787a0-ffaf-11e8-8eb2-f2801f1b9fd1"
-  modified="2019-01-03T00:00:00.000Z"
-  name="Dogs"
-/>
-`;
-
-exports[`NotePageMain component splits the content by \\n or \\n\\r, with a p foreach 1`] = `null`;
-
-exports[`NotePageMain component splits the content by \\n or \\n\\r, with a p foreach 2`] = `null`;
