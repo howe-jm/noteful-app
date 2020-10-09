@@ -13,7 +13,7 @@ import config from '../config';
 import './App.css';
 import ErrorPage from '../ErrorBoundary/ErrorBoundary';
 
-class App extends Component {
+export default class App extends Component {
   state = {
     notes: [],
     folders: [],
@@ -24,6 +24,7 @@ class App extends Component {
   };
 
   componentDidMount() {
+    // Added some loading feedback.
     this.setState({ loading: true });
     Promise.all([fetch(`${config.API_ENDPOINT}/notes`), fetch(`${config.API_ENDPOINT}/folders`)])
       .then(([notesRes, foldersRes]) => {
@@ -36,25 +37,31 @@ class App extends Component {
         this.setState({ notes, folders });
         this.setState({ loading: false });
       })
+      // Added some error feedback. This sets the error state and defines the error message to be called up later.
       .catch((error) => {
         this.setState({ loading: false, error: true, errorMsg: `${error}` });
       });
   }
+  // Local updates to state so we can trigger a re-render after doing stuff, like...
 
+  // Deleting notes!
   handleDeleteNote = (noteId) => {
     this.setState({
       notes: this.state.notes.filter((note) => note.id !== noteId),
     });
   };
 
+  // Adding folders!
   handleAddFolder = (res) => {
     this.setState({ folders: [...this.state.folders, res] });
   };
 
+  // Adding notes!
   handleAddNote = (res) => {
     this.setState({ notes: [...this.state.notes, res] });
   };
 
+  // Implemented Switch and a fallback component so we can't just go around typing in random folder names and get blank pages.
   renderNavRoutes() {
     return (
       <>
@@ -70,7 +77,7 @@ class App extends Component {
       </>
     );
   }
-
+  // Implemented Switch and a fallback component so we can't just go around typing in random note names and get blank pages.
   renderMainRoutes() {
     return (
       <>
@@ -88,6 +95,7 @@ class App extends Component {
   }
 
   render() {
+    // Values for the context provider - data and functions that other components will need to use and reference.
     const value = {
       notes: this.state.notes,
       folders: this.state.folders,
@@ -100,12 +108,15 @@ class App extends Component {
       <ErrorPage>
         <ApiContext.Provider value={value}>
           <div className='App'>
+            {/* Here's a little logic that will give the user feedback when loading from the API, as well as when we get an error. Originally, 
+            we were just blindly running renderNavRoutes whether the API fetch was successful or not. It was not pretty.*/}
             <nav className='App__nav'>{loading ? <h2 className='loading-text'>Loading...</h2> : error ? <h2 className='loading-text'>Error: {errorMsg}</h2> : this.renderNavRoutes()}</nav>
             <header className='App__header'>
               <h1>
                 <Link to='/'>Noteful</Link> <FontAwesomeIcon icon='check-double' />
               </h1>
             </header>
+            {/* Same thing we did for renderNavRoutes. If we wanted to, we could put pretty loading animation components in, but we're just using text for now. */}
             <main className='App__main'>{loading ? <h2 className='loading-text'>Loading...</h2> : error ? <h2 className='loading-text'>Error: {errorMsg}</h2> : this.renderMainRoutes()}</main>
           </div>
         </ApiContext.Provider>
@@ -113,5 +124,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

@@ -37,8 +37,8 @@ export default class NotePageMain extends React.Component {
   }
 }
 
-NotePageMain.defaultProps = {
-  match: {
+NotePageMain.propTypes = {
+  match: PropTypes.shape({
     params: PropTypes.object,
-  },
+  }),
 };

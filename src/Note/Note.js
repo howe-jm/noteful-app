@@ -55,8 +55,9 @@ export default class Note extends React.Component {
     );
   }
 }
+//Are PropTypes really this simple? I don't fully understand them yet.
 
-Note.defaultProps = {
+Note.propTypes = {
   onDeleteNote: PropTypes.func,
   id: PropTypes.number,
   name: PropTypes.string,

@@ -10,9 +10,7 @@ exports[`Add Folder component Renders without errors 1`] = `
     >
       Add Folder
     </h2>
-    <form
-      onSubmit={[Function]}
-    >
+    <form>
       <label>
         Folder Name
         <div>

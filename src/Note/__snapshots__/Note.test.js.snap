@@ -10,10 +10,8 @@ exports[`Note component renders a .Note by default 1`] = `
     >
       <Link
         replace={false}
-        to="/note/function () { [native code] }"
-      >
-        <Component />
-      </Link>
+        to="/note/undefined"
+      />
     </h2>
     <button
       className="Note__delete"

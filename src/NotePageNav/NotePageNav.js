@@ -30,11 +30,11 @@ export default class NotePageNav extends React.Component {
   }
 }
 
-NotePageNav.defaultProps = {
-  history: {
+NotePageNav.propTypes = {
+  history: PropTypes.shape({
     goBack: PropTypes.func,
-  },
-  match: {
+  }),
+  match: PropTypes.shape({
     params: PropTypes.object,
-  },
+  }),
 };
