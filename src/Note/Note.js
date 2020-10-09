@@ -61,5 +61,5 @@ Note.propTypes = {
   onDeleteNote: PropTypes.func,
   id: PropTypes.string,
   name: PropTypes.string,
-  modified: PropTypes.instanceOf(Date),
+  modified: PropTypes.string,
 };

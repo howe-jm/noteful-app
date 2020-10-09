@@ -38,9 +38,10 @@ export default class NotePageMain extends React.Component {
 }
 
 NotePageMain.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.object,
-  }),
+  onDeleteNote: PropTypes.func,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  modified: PropTypes.string,
 };
 
 NotePageMain.defaultProps = {
