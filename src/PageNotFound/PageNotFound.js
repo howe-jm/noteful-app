@@ -1,6 +1,7 @@
 import React from 'react';
 import ErrorPage from '../ErrorBoundary/ErrorBoundary';
 import ApiContext from '../ApiContext';
+import PropTypes from 'prop-types';
 import './PageNotFound.css';
 
 export default class PageNotFound extends React.Component {
@@ -17,3 +18,5 @@ export default class PageNotFound extends React.Component {
     );
   }
 }
+
+PageNotFound.propTypes = PropTypes.object;
