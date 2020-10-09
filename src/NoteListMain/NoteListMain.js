@@ -6,10 +6,10 @@ import CircleButton from '../CircleButton/CircleButton';
 import ApiContext from '../ApiContext';
 import { getNotesForFolder } from '../notes-helpers';
 import ErrorPage from '../ErrorBoundary/ErrorBoundary';
-import PropTypes from 'prop-types';
 import './NoteListMain.css';
 
 export default class NoteListMain extends React.Component {
+  static defaultProps = { match: { params: {} } };
   static contextType = ApiContext;
 
   handleDeleteNote = () => {
@@ -42,11 +42,3 @@ export default class NoteListMain extends React.Component {
     );
   }
 }
-
-Note.defaultProps = {
-  match: {
-    params: PropTypes.shape({
-      folderId: PropTypes.string,
-    }),
-  },
-};

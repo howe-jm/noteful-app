@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add Folder component Renders without errors 1`] = `
+<ErrorPage>
+  <div
+    className="not-found"
+  >
+    <h2>
+      Note not found!
+    </h2>
+    <p>
+      Get outta here, stalker.
+    </p>
+  </div>
+</ErrorPage>
+`;
