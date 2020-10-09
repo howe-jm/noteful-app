@@ -23,5 +23,5 @@ export default class ErrorPage extends React.Component {
 }
 
 ErrorPage.propTypes = {
-  children: PropTypes.obj,
+  children: PropTypes.object,
 };
