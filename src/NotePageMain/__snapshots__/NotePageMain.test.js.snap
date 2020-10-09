@@ -1,18 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NotePageMain component renders a .NotePageMain by default 1`] = `
-<section
-  className="NotePageMain"
->
-  <Note />
-  <div
-    className="NotePageMain__content"
+<ErrorPage>
+  <section
+    className="NotePageMain"
   >
-    <p
-      key="0"
+    <Note
+      id={[Function]}
+      modified={[Function]}
+      name={[Function]}
+      onDeleteNote={[Function]}
     />
-  </div>
-</section>
+    <div
+      className="NotePageMain__content"
+    >
+      <p
+        key="0"
+      />
+    </div>
+  </section>
+</ErrorPage>
 `;
 
 exports[`NotePageMain component renders a Note with note prop 1`] = `

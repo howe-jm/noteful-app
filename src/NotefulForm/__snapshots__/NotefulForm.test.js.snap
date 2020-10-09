@@ -3,7 +3,7 @@
 exports[`NotefulForm component renders a form.NotefulForm by default 1`] = `
 <form
   action="#"
-  className="Noteful-form "
+  className="Noteful-form function () { [native code] }"
 />
 `;
 

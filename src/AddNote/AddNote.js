@@ -40,10 +40,7 @@ export default class AddNote extends React.Component {
       .then((res) => {
         this.context.addNote(res);
       })
-      .then(() => this.props.history.push(`/`))
-      .catch((error) => {
-        console.error({ error });
-      });
+      .then(() => this.props.history.push(`/`));
   };
 
   formErrorState = (event) => {
@@ -62,55 +59,69 @@ export default class AddNote extends React.Component {
   };
 
   render() {
-    const options = this.context.folders.map((folder) => {
+    if (!this.context.folders) {
       return (
-        <option key={folder.id} value={folder.id}>
-          {folder.name}
-        </option>
+        <ErrorPage>
+          <div className='add-note-form'>
+            <p>Error: No Folders Found</p>
+          </div>
+        </ErrorPage>
       );
-    });
-    return (
-      <ErrorPage>
-        <div className='add-note-form'>
-          <h2 className='add-form-title'>Add Note</h2>
-          <form className='form-body' onSubmit={!this.state.name || this.state.name === '' || (!this.state.content || this.state.content === '') ? this.formErrorState : this.handleSubmit}>
-            <div className='form-div'>
-              <label>
-                Note Name
-                <div>
-                  <input className='note-submit-inputs' value={this.state.name} type='text' name='notename' onChange={(event) => this.setState({ error: false, name: event.target.value })} />
-                </div>
-              </label>
-            </div>
-            <div className='form-div'>
-              <label>
-                Folder
-                <div>
-                  <select value={this.state.folderId} name='notefolder' onChange={(event) => this.setState({ error: false, folderId: event.target.value })}>
-                    {options}
-                  </select>
-                </div>
-              </label>
-            </div>
-            <div className='form-div'>
-              <label>
-                Note Content
-                <div>
-                  <textarea className='note-submit-content' value={this.state.content} onChange={(event) => this.setState({ error: false, content: event.target.value })} />
-                </div>
-              </label>
-            </div>
-            <div className='note-submit-button'>
-              <input type='submit' value='Submit' />
-            </div>
-            {this.state.error && <p className='error-text'>{this.validateForm()}</p>}
-          </form>
-        </div>
-      </ErrorPage>
-    );
+    } else {
+      const options = this.context.folders.map((folder) => {
+        return (
+          <option key={folder.id} value={folder.id}>
+            {folder.name}
+          </option>
+        );
+      });
+
+      return (
+        <ErrorPage>
+          <div className='add-note-form'>
+            <h2 className='add-form-title'>Add Note</h2>
+            <form className='form-body' onSubmit={!this.state.name || this.state.name === '' || (!this.state.content || this.state.content === '') ? this.formErrorState : this.handleSubmit}>
+              <div className='form-div'>
+                <label>
+                  Note Name
+                  <div>
+                    <input className='note-submit-inputs' value={this.state.name} type='text' name='notename' onChange={(event) => this.setState({ error: false, name: event.target.value })} />
+                  </div>
+                </label>
+              </div>
+              <div className='form-div'>
+                <label>
+                  Folder
+                  <div>
+                    <select value={this.state.folderId} name='notefolder' onChange={(event) => this.setState({ error: false, folderId: event.target.value })}>
+                      {options}
+                    </select>
+                  </div>
+                </label>
+              </div>
+              <div className='form-div'>
+                <label>
+                  Note Content
+                  <div>
+                    <textarea className='note-submit-content' value={this.state.content} onChange={(event) => this.setState({ error: false, content: event.target.value })} />
+                  </div>
+                </label>
+              </div>
+              <div className='note-submit-button'>
+                <input type='submit' value='Submit' />
+              </div>
+              {this.state.error && <p className='error-text'>{this.validateForm()}</p>}
+            </form>
+          </div>
+        </ErrorPage>
+      );
+    }
   }
 }
 
 AddNote.defaultProps = {
   history: PropTypes.object,
+  context: PropTypes.shape({
+    match: PropTypes.object,
+  }),
 };

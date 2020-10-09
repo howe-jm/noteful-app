@@ -1,44 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NoteListNav component renders a .NoteListNav by default 1`] = `
-<div
-  className="NoteListNav"
->
-  <ul
-    className="NoteListNav__list"
-  />
+<ErrorPage>
   <div
-    className="NoteListNav__button-wrapper"
+    className="NoteListNav"
   >
-    <NavCircleButton
-      className="NoteListNav__add-folder-button"
-      tag={[Function]}
-      to="/add-folder"
-      type="button"
+    <ul
+      className="NoteListNav__list"
+    />
+    <div
+      className="NoteListNav__button-wrapper"
     >
-      <FontAwesomeIcon
-        border={false}
-        className=""
-        fixedWidth={false}
-        flip={null}
-        icon="plus"
-        inverse={false}
-        listItem={false}
-        mask={null}
-        pull={null}
-        pulse={false}
-        rotation={null}
-        size={null}
-        spin={false}
-        symbol={false}
-        title=""
-        transform={null}
-      />
-      <br />
-      Folder
-    </NavCircleButton>
+      <NavCircleButton
+        className="NoteListNav__add-folder-button"
+        tag={[Function]}
+        to="/add-folder"
+        type="button"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon="plus"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        <br />
+        Folder
+      </NavCircleButton>
+    </div>
   </div>
-</div>
+</ErrorPage>
 `;
 
 exports[`NoteListNav component renders a link in ul for each folder in array 1`] = `

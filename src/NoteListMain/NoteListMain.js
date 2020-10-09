@@ -45,6 +45,8 @@ export default class NoteListMain extends React.Component {
 
 Note.defaultProps = {
   match: {
-    params: PropTypes.object,
+    params: PropTypes.shape({
+      folderId: PropTypes.string,
+    }),
   },
 };

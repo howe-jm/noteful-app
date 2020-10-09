@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add Folder component Renders without errors 1`] = `
+<ErrorPage>
+  <div
+    className="add-folder-form"
+  >
+    <h2
+      className="add-form-title"
+    >
+      Add Folder
+    </h2>
+    <form
+      onSubmit={[Function]}
+    >
+      <label>
+        Folder Name
+        <div>
+          <input
+            name="name"
+            onChange={[Function]}
+            type="text"
+          />
+        </div>
+      </label>
+      <div>
+        <input
+          type="submit"
+          value="Submit"
+        />
+      </div>
+    </form>
+  </div>
+</ErrorPage>
+`;
