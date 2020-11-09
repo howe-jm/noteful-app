@@ -40,7 +40,7 @@ export default class AddNote extends React.Component {
 
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('Authorization', 'Bearer b10f29ec-1b2b-4d7f-be28-4bcacad634da');
+    myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_API_KEY}`);
 
     var raw = JSON.stringify({
       notename: obj.name,

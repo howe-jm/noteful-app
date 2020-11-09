@@ -16,7 +16,7 @@ export default class Note extends React.Component {
     const noteId = this.props.id;
 
     var myHeaders = new Headers();
-    myHeaders.append('Authorization', 'Bearer b10f29ec-1b2b-4d7f-be28-4bcacad634da');
+    myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_API_KEY}`);
 
     var requestOptions = { method: 'DELETE', headers: myHeaders, redirect: 'follow' };
 
