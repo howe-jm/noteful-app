@@ -26,7 +26,10 @@ export default class App extends Component {
   componentDidMount() {
     // Added some loading feedback.
     this.setState({ loading: true });
-    Promise.all([fetch(`${config.API_ENDPOINT}/notes`), fetch(`${config.API_ENDPOINT}/folders`)])
+    Promise.all([
+      fetch(`${config.API_ENDPOINT}/notes`),
+      fetch(`${config.API_ENDPOINT}/folders`),
+    ])
       .then(([notesRes, foldersRes]) => {
         if (!notesRes.ok) return notesRes.json().then((e) => Promise.reject(e));
         if (!foldersRes.ok) return foldersRes.json().then((e) => Promise.reject(e));
@@ -110,14 +113,30 @@ export default class App extends Component {
           <div className='App'>
             {/* Here's a little logic that will give the user feedback when loading from the API, as well as when we get an error. Originally, 
             we were just blindly running renderNavRoutes whether the API fetch was successful or not. It was not pretty.*/}
-            <nav className='App__nav'>{loading ? <h2 className='loading-text'>Loading...</h2> : error ? <h2 className='loading-text'>Error: {errorMsg}</h2> : this.renderNavRoutes()}</nav>
+            <nav className='App__nav'>
+              {loading ? (
+                <h2 className='loading-text'>Loading...</h2>
+              ) : error ? (
+                <h2 className='loading-text'>Error: {errorMsg}</h2>
+              ) : (
+                this.renderNavRoutes()
+              )}
+            </nav>
             <header className='App__header'>
               <h1>
                 <Link to='/'>Noteful</Link> <FontAwesomeIcon icon='check-double' />
               </h1>
             </header>
             {/* Same thing we did for renderNavRoutes. If we wanted to, we could put pretty loading animation components in, but we're just using text for now. */}
-            <main className='App__main'>{loading ? <h2 className='loading-text'>Loading...</h2> : error ? <h2 className='loading-text'>Error: {errorMsg}</h2> : this.renderMainRoutes()}</main>
+            <main className='App__main'>
+              {loading ? (
+                <h2 className='loading-text'>Loading...</h2>
+              ) : error ? (
+                <h2 className='loading-text'>Error: {errorMsg}</h2>
+              ) : (
+                this.renderMainRoutes()
+              )}
+            </main>
           </div>
         </ApiContext.Provider>
       </ErrorPage>

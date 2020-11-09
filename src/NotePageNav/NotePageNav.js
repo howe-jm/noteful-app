@@ -12,18 +12,23 @@ export default class NotePageNav extends React.Component {
 
   render() {
     const { notes, folders } = this.context;
-    const { noteId } = this.props.match.params;
-    const note = findNote(notes, noteId) || {};
-    const folder = findFolder(folders, note.folderId);
+    const { noteid } = this.props.match.params;
+    const note = findNote(notes, noteid) || {};
+    const folder = findFolder(folders, note.folderid);
     return (
       <ErrorPage>
         <div className='NotePageNav'>
-          <CircleButton tag='button' role='link' onClick={() => this.props.history.goBack()} className='NotePageNav__back-button'>
+          <CircleButton
+            tag='button'
+            role='link'
+            onClick={() => this.props.history.goBack()}
+            className='NotePageNav__back-button'
+          >
             <FontAwesomeIcon icon='chevron-left' />
             <br />
             Back
           </CircleButton>
-          {folder && <h3 className='NotePageNav__folder-name'>{folder.name}</h3>}
+          {folder && <h3 className='NotePageNav__folder-name'>{folder.foldername}</h3>}
         </div>
       </ErrorPage>
     );

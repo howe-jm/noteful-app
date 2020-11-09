@@ -23,7 +23,7 @@ export default class Note extends React.Component {
     })
       .then((res) => {
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
-        return res.json();
+        return res;
       })
       .then(() => {
         this.context.deleteNote(noteId);
@@ -35,12 +35,12 @@ export default class Note extends React.Component {
   };
 
   render() {
-    const { name, id, modified } = this.props;
+    const { notename, id, modified } = this.props;
     return (
       <ErrorPage>
         <div className='Note'>
           <h2 className='Note__title'>
-            <Link to={`/note/${id}`}>{name}</Link>
+            <Link to={`/note/${id}`}>{notename}</Link>
           </h2>
           <button className='Note__delete' type='button' onClick={this.handleClickDelete}>
             <FontAwesomeIcon icon='trash-alt' /> remove
@@ -59,7 +59,7 @@ export default class Note extends React.Component {
 
 Note.propTypes = {
   onDeleteNote: PropTypes.func,
-  id: PropTypes.string,
+  id: PropTypes.number,
   name: PropTypes.string,
   modified: PropTypes.string,
 };

@@ -16,15 +16,21 @@ export default class NotePageMain extends React.Component {
 
   render() {
     const { notes = [] } = this.context;
-    const { noteId } = this.props.match.params;
+    const noteId = parseInt(this.props.match.params.noteId);
     const note = findNote(notes, noteId) || { content: '' };
-    if (noteId !== note.id) {
+    if (!(noteId === note.id)) {
       return <PageNotFound />;
     } else {
+      console.log(note);
       return (
         <ErrorPage>
           <section className='NotePageMain'>
-            <Note id={note.id} name={note.name} modified={note.modified} onDeleteNote={this.handleDeleteNote} />
+            <Note
+              id={note.id}
+              notename={note.notename}
+              modified={note.modified}
+              onDeleteNote={this.handleDeleteNote}
+            />
             <div className='NotePageMain__content'>
               {note.content.split(/\n \r|\n/).map((para, i) => (
                 <p key={i}>{para}</p>
@@ -39,7 +45,7 @@ export default class NotePageMain extends React.Component {
 
 NotePageMain.propTypes = {
   onDeleteNote: PropTypes.func,
-  id: PropTypes.string,
+  id: PropTypes.number,
   name: PropTypes.string,
   modified: PropTypes.string,
 };

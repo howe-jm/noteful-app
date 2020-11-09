@@ -18,7 +18,7 @@ export default class NoteListMain extends React.Component {
   };
 
   render() {
-    const { folderId } = this.props.match.params;
+    const folderId = parseInt(this.props.match.params.folderId);
     const { notes = [] } = this.context;
     const notesForFolder = getNotesForFolder(notes, folderId);
     return (
@@ -27,12 +27,22 @@ export default class NoteListMain extends React.Component {
           <ul>
             {notesForFolder.map((note) => (
               <li key={note.id}>
-                <Note id={note.id} name={note.name} modified={note.modified} onDeleteNote={this.handleDeleteNote} />
+                <Note
+                  id={note.id}
+                  notename={note.notename}
+                  modified={note.modified}
+                  onDeleteNote={this.handleDeleteNote}
+                />
               </li>
             ))}
           </ul>
           <div className='NoteListMain__button-container'>
-            <CircleButton tag={Link} to='/add-note' type='button' className='NoteListMain__add-note-button'>
+            <CircleButton
+              tag={Link}
+              to='/add-note'
+              type='button'
+              className='NoteListMain__add-note-button'
+            >
               <FontAwesomeIcon icon='plus' />
               <br />
               Note
