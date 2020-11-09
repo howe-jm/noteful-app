@@ -4,7 +4,6 @@ import ApiContext from '../ApiContext';
 import ErrorPage from '../ErrorBoundary/ErrorBoundary';
 import PropTypes from 'prop-types';
 import config from '../config';
-
 // Here we use a stateful class component because the form validation relies on current state.
 export default class AddNote extends React.Component {
   constructor(props) {
@@ -41,6 +40,7 @@ export default class AddNote extends React.Component {
 
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('Authorization', 'Bearer b10f29ec-1b2b-4d7f-be28-4bcacad634da');
 
     var raw = JSON.stringify({
       notename: obj.name,

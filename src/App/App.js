@@ -26,9 +26,15 @@ export default class App extends Component {
   componentDidMount() {
     // Added some loading feedback.
     this.setState({ loading: true });
+
+    var myHeaders = new Headers();
+    myHeaders.append('Authorization', 'Bearer b10f29ec-1b2b-4d7f-be28-4bcacad634da');
+
+    var requestOptions = { method: 'GET', headers: myHeaders, redirect: 'follow' };
+
     Promise.all([
-      fetch(`${config.API_ENDPOINT}/notes`),
-      fetch(`${config.API_ENDPOINT}/folders`),
+      fetch(`${config.API_ENDPOINT}/notes`, requestOptions),
+      fetch(`${config.API_ENDPOINT}/folders`, requestOptions),
     ])
       .then(([notesRes, foldersRes]) => {
         if (!notesRes.ok) return notesRes.json().then((e) => Promise.reject(e));
